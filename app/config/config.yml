@@ -67,3 +67,55 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+# Assetic Configuration
+assetic:
+    assets:
+        roboto-bold-ttf:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Bold.ttf'
+            output: 'assets/fonts/roboto/Roboto-Bold.ttf'
+        roboto-bold-woff:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Bold.woff'
+            output: 'assets/fonts/roboto/Roboto-Bold.woff'
+        roboto-bold-woff2:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Bold.woff2'
+            output: 'assets/fonts/roboto/Roboto-Bold.woff2'
+        roboto-light-ttf:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Light.ttf'
+            output: 'assets/fonts/roboto/Roboto-Light.ttf'
+        roboto-light-woff:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Light.woff'
+            output: 'assets/fonts/roboto/Roboto-Light.woff'
+        roboto-light-woff2:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Light.woff2'
+            output: 'assets/fonts/roboto/Roboto-Light.woff2'
+        roboto-medium-ttf:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Medium.ttf'
+            output: 'assets/fonts/roboto/Roboto-Medium.ttf'
+        roboto-medium-woff:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Medium.woff'
+            output: 'assets/fonts/roboto/Roboto-Medium.woff'
+        roboto-medium-woff2:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Medium.woff2'
+            output: 'assets/fonts/roboto/Roboto-Medium.woff2'
+        roboto-regular-ttf:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Regular.ttf'
+            output: 'assets/fonts/roboto/Roboto-Regular.ttf'
+        roboto-regular-woff:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Regular.woff'
+            output: 'assets/fonts/roboto/Roboto-Regular.woff'
+        roboto-regular-woff2:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Regular.woff2'
+            output: 'assets/fonts/roboto/Roboto-Regular.woff2'
+        roboto-thin-ttf:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Thin.ttf'
+            output: 'assets/fonts/roboto/Roboto-Thin.ttf'
+        roboto-thin-woff:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Thin.woff'
+            output: 'assets/fonts/roboto/Roboto-Thin.woff'
+        roboto-thin-woff2:
+            inputs: 'assets/materialize-src/fonts/roboto/Roboto-Thin.woff2'
+            output: 'assets/fonts/roboto/Roboto-Thin.woff2'
+    filters:
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+        jsqueeze: ~

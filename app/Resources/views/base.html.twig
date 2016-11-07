@@ -2,12 +2,33 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Vuelazos{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets filter="scssphp" output="assets/css/app.css"
+            'assets/materialize-src/sass/materialize.scss'
+            'assets/css/style.css'
+            %}
+            <link href="{{ asset_url }}" rel="stylesheet" />
+            {% endstylesheets %}
+
+        {% endblock %}
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     </head>
     <body>
+    {% include 'default/header.html.twig' %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    {% include 'default/footer.html.twig' %}
+    {% block javascript %}
+        {% javascripts filter="?jsqueeze" output="assets/js/app.js"
+            'assets/materialize-src/js/bin/materialize.min.js'
+        'assets/js/script.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
     </body>
 </html>
