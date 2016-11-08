@@ -6,6 +6,7 @@
         {% block stylesheets %}
             {% stylesheets filter="scssphp" output="assets/css/app.css"
             'assets/materialize-src/sass/materialize.scss'
+            'assets/materialize-src/sass/clockpicker.scss'
             'assets/css/style.css'
             %}
             <link href="{{ asset_url }}" rel="stylesheet" />
@@ -15,19 +16,23 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     </head>
     <body>
-    {% include 'default/header.html.twig' %}
+    {% block header %}{%  endblock %}
         {% block body %}{% endblock %}
     {% include 'default/footer.html.twig' %}
     {% block javascript %}
         {% javascripts filter="?jsqueeze" output="assets/js/app.js"
             'assets/materialize-src/js/bin/materialize.min.js'
+        'assets/materialize-src/js/bin/materialize.clockpicker.js'
         'assets/js/script.js'
         %}
         <script src="{{ asset_url }}"></script>
+
         {% endjavascripts %}
     {% endblock %}
     </body>

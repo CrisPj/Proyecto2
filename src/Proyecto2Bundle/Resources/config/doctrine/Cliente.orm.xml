@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Proyecto2Bundle\Entity\Cliente" table="cliente">
+    <indexes>
+      <index name="IDX_F41C9B258A0E8868" columns="metodo_pago"/>
+    </indexes>
+    <id name="idCliente" type="integer" column="id_cliente">
+      <generator strategy="SEQUENCE"/>
+      <sequence-generator sequence-name="cliente_id_cliente_seq" allocation-size="1" initial-value="1"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="apellidoPaterno" type="string" column="apellido_paterno" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="apellidoMaterno" type="string" column="apellido_materno" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="direccion" type="string" column="direccion" length="300" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="direccionFacturacion" type="string" column="direccion_facturacion" length="300" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="metodoPago" target-entity="MetodoPago" fetch="LAZY">
+      <join-columns>
+        <join-column name="metodo_pago" referenced-column-name="id_metodo_pago"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

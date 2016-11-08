@@ -1,0 +1,14 @@
+hotel_index:
+    path:     /
+    defaults: { _controller: "Proyecto2Bundle:Hotel:index" }
+    methods:  GET
+    options:
+            expose: true
+
+hotel_show:
+    path:     /{id}/show
+    defaults: { _controller: "Proyecto2Bundle:Hotel:show" }
+    methods:  GET
+
+
+

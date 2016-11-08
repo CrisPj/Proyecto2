@@ -1,3 +1,20 @@
+proyecto2_tipo:
+    resource: "@Proyecto2Bundle/Resources/config/routing/tipo.yml"
+    prefix:   /tipo
+
+proyecto2_ciudad:
+        resource: "@Proyecto2Bundle/Resources/config/routing/ciudad.yml"
+        prefix:   /ciudad
+
+proyecto2_hotel:
+        resource: "@Proyecto2Bundle/Resources/config/routing/hotel.yml"
+        prefix:   /hotel
+
 proyecto2_homepage:
     path:     /
     defaults: { _controller: Proyecto2Bundle:Default:index }
+
+vuelo_hotel:
+  path: /hoteles
+  defaults: { _controller: Proyecto2Bundle:Default:hotel }
+

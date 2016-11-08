@@ -14,21 +14,20 @@
             </ul>
 
             <ul class="tabs tabs-transparent">
-                <li class="tab"><a target="_self" class="active" href="/">Vuelo</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_hotel') }}">Vuelo + Hotel</a></li>
+                <li class="tab"><a target="_self" href="/">Vuelo</a></li>
+                <li class="tab"><a  class="active" href="{{ path('vuelo_hotel') }}">Vuelo + Hotel</a></li>
             </ul>
         </div>
     </nav>
 {% endblock %}
 {% block body %}
-    <div id="test1" class="col s12">
+    <div id="test2" class="col s12">
         <div class="container-fluid" id="image">
             <div class="jumbotron" id="tagline">
-                {% include 'default/form.html.twig' %}
+                {% include 'default/form2.html.twig' %}
             </div>
         </div>
     </div>
-
 {% endblock %}
 {% block javascripts %}
 {% endblock %}

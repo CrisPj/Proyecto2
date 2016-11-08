@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('Proyecto2Bundle:Default:index.html.twig');
     }
-}
+
+    public function hotelAction()
+    {
+        return $this->render('Proyecto2Bundle:Default:index2.html.twig');
+    }}

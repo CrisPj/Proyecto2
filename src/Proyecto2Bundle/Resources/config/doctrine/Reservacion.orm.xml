@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Proyecto2Bundle\Entity\Reservacion" table="reservacion">
+    <indexes>
+      <index name="IDX_8F0626732A813255" columns="id_cliente"/>
+      <index name="IDX_8F062673588DA245" columns="id_vuelo"/>
+      <index name="IDX_8F062673EDD61FE9" columns="id_hotel"/>
+    </indexes>
+    <id name="idReservacion" type="integer" column="id_reservacion"/>
+    <id name="idCliente" association-key="true"/>
+    <id name="idVuelo" association-key="true"/>
+    <one-to-one field="idCliente" target-entity="Cliente" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_cliente" referenced-column-name="id_cliente"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idVuelo" target-entity="Vuelo" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_vuelo" referenced-column-name="id_vuelo"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="idHotel" target-entity="Hotel" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_hotel" referenced-column-name="id_hotel"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

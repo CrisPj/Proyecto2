@@ -3,3 +3,14 @@
 }
  #cora {  color: red;  }
 .brand-logo{margin-left: 1%;}
+#image{
+ background-image: url("../img/img.jpg");
+
+}
+#tagline .row {
+ margin-bottom: 0;
+}
+
+footer.page-footer{
+ margin-top: 0;
+}

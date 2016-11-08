@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tipos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Idtipo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipo in tipos %}
+            <tr>
+                <td><a href="{{ path('tipo_show', { 'id': tipo.idTipo }) }}">{{ tipo.tipo }}</a></td>
+                <td>{{ tipo.idTipo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tipo_show', { 'id': tipo.idTipo }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

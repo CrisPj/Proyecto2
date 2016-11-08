@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ciudads list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ciudad</th>
+                <th>Idciudad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ciudad in ciudads %}
+            <tr>
+                <td><a href="{{ path('ciudad_show', { 'id': ciudad.idCiudad }) }}">{{ ciudad.ciudad }}</a></td>
+                <td>{{ ciudad.idCiudad }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ciudad_show', { 'id': ciudad.idCiudad }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

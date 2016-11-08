@@ -1,0 +1,200 @@
+<?php
+
+namespace Proyecto2Bundle\Entity;
+
+/**
+ * Cliente
+ */
+class Cliente
+{
+    /**
+     * @var string
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     */
+    private $apellidoPaterno;
+
+    /**
+     * @var string
+     */
+    private $apellidoMaterno;
+
+    /**
+     * @var string
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     */
+    private $direccionFacturacion;
+
+    /**
+     * @var integer
+     */
+    private $idCliente;
+
+    /**
+     * @var \Proyecto2Bundle\Entity\MetodoPago
+     */
+    private $metodoPago;
+
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Cliente
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set apellidoPaterno
+     *
+     * @param string $apellidoPaterno
+     *
+     * @return Cliente
+     */
+    public function setApellidoPaterno($apellidoPaterno)
+    {
+        $this->apellidoPaterno = $apellidoPaterno;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidoPaterno
+     *
+     * @return string
+     */
+    public function getApellidoPaterno()
+    {
+        return $this->apellidoPaterno;
+    }
+
+    /**
+     * Set apellidoMaterno
+     *
+     * @param string $apellidoMaterno
+     *
+     * @return Cliente
+     */
+    public function setApellidoMaterno($apellidoMaterno)
+    {
+        $this->apellidoMaterno = $apellidoMaterno;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidoMaterno
+     *
+     * @return string
+     */
+    public function getApellidoMaterno()
+    {
+        return $this->apellidoMaterno;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     *
+     * @return Cliente
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set direccionFacturacion
+     *
+     * @param string $direccionFacturacion
+     *
+     * @return Cliente
+     */
+    public function setDireccionFacturacion($direccionFacturacion)
+    {
+        $this->direccionFacturacion = $direccionFacturacion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccionFacturacion
+     *
+     * @return string
+     */
+    public function getDireccionFacturacion()
+    {
+        return $this->direccionFacturacion;
+    }
+
+    /**
+     * Get idCliente
+     *
+     * @return integer
+     */
+    public function getIdCliente()
+    {
+        return $this->idCliente;
+    }
+
+    /**
+     * Set metodoPago
+     *
+     * @param \Proyecto2Bundle\Entity\MetodoPago $metodoPago
+     *
+     * @return Cliente
+     */
+    public function setMetodoPago(\Proyecto2Bundle\Entity\MetodoPago $metodoPago = null)
+    {
+        $this->metodoPago = $metodoPago;
+
+        return $this;
+    }
+
+    /**
+     * Get metodoPago
+     *
+     * @return \Proyecto2Bundle\Entity\MetodoPago
+     */
+    public function getMetodoPago()
+    {
+        return $this->metodoPago;
+    }
+}
+

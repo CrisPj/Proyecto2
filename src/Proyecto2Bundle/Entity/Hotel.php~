@@ -1,0 +1,84 @@
+<?php
+
+namespace Proyecto2Bundle\Entity;
+
+/**
+ * Hotel
+ */
+class Hotel
+{
+    /**
+     * @var string
+     */
+    private $hotel;
+
+    /**
+     * @var integer
+     */
+    private $idHotel;
+
+    /**
+     * @var \Proyecto2Bundle\Entity\Ciudad
+     */
+    private $idCiudad;
+
+
+    /**
+     * Set hotel
+     *
+     * @param string $hotel
+     *
+     * @return Hotel
+     */
+    public function setHotel($hotel)
+    {
+        $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    /**
+     * Get hotel
+     *
+     * @return string
+     */
+    public function getHotel()
+    {
+        return $this->hotel;
+    }
+
+    /**
+     * Get idHotel
+     *
+     * @return integer
+     */
+    public function getIdHotel()
+    {
+        return $this->idHotel;
+    }
+
+    /**
+     * Set idCiudad
+     *
+     * @param \Proyecto2Bundle\Entity\Ciudad $idCiudad
+     *
+     * @return Hotel
+     */
+    public function setIdCiudad(\Proyecto2Bundle\Entity\Ciudad $idCiudad = null)
+    {
+        $this->idCiudad = $idCiudad;
+
+        return $this;
+    }
+
+    /**
+     * Get idCiudad
+     *
+     * @return \Proyecto2Bundle\Entity\Ciudad
+     */
+    public function getIdCiudad()
+    {
+        return $this->idCiudad;
+    }
+}
+
