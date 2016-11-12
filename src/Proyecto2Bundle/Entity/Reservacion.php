@@ -123,4 +123,33 @@ class Reservacion
     {
         return $this->idHotel;
     }
+    /**
+     * @var integer
+     */
+    private $total;
+
+
+    /**
+     * Set total
+     *
+     * @param integer $total
+     *
+     * @return Reservacion
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return integer
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
 }

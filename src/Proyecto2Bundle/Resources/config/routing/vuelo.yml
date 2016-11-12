@@ -1,7 +1,9 @@
 vuelo_index:
     path:     /
     defaults: { _controller: "Proyecto2Bundle:Vuelo:index" }
-    methods:  GET
+    methods:  [GET, POST]
+    options:
+                expose: true
 
 vuelo_show:
     path:     /{id}/show

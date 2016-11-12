@@ -7,6 +7,7 @@ namespace Proyecto2Bundle\Entity;
  */
 class Vuelo
 {
+
     /**
      * @var \DateTime
      */
@@ -52,6 +53,11 @@ class Vuelo
         return $this;
     }
 
+    public function setIdVuelo($idVuelo)
+    {
+        $this->idVuelo = $idVuelo;
+        return $this;
+    }
     /**
      * Get fecha
      *

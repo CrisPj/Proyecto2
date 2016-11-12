@@ -1,39 +1,207 @@
 {% extends 'base.html.twig' %}
-{% block header %}
-    <nav class="nav-extended blue blue-lighten-2">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img src="{{ asset("assets/img/logo.png") }}" alt="Logo"></a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Inicio</a></li>
-                <li><a href="badges.html">Admin</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="sass.html">Inicio</a></li>
-                <li><a href="badges.html">Admin</a></li>
-            </ul>
-
-            <ul class="tabs tabs-transparent">
-                <li class="tab"><a target="_self" class="active" href="/">Vuelo</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_hotel') }}">Vuelo + Hotel</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_index') }}">Listado de vuelos</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_index') }}">Listado de hoteles</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_index') }}">Listado de clientes</a></li>
-            </ul>
-        </div>
-    </nav>
-{% endblock %}
 {% block body %}
-    <div id="test1" class="col s12">
-        <div class="container-fluid" id="image">
-            <div class="jumbotron" id="tagline">
-                {% include 'default/form.html.twig' %}
+        <div id="image">
+            <div class="text-vcenter">
+                <h1 class="text-white">Vuelos Python Team &copy</h1>
+                <h3>Reservaciones</h3>
+                <a id="busquedabtn" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelos</a>
+                <a id="busquedabtn2" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelo+hotel</a>
             </div>
-            <div  class="card-panel" id="resultados">
-            </div>
+        </div>
+    <div  class="card-panel" id="busqueda">
+        <div class="container">
+            <div id="form-messages" class="panel panel-info"></div>
         </div>
     </div>
 
 {% endblock %}
-{% block javascripts %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
+    <style>
+        #busqueda{
+        display: none;}
+    </style>
+    {% endblock %}
+{% block javascript %}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#busquedabtn2').click(function () {
+                spa('vuelo_hotel');
+                });
+            $('#busquedabtn').click(function () {
+                spa('vuelo');
+            });
+            $('#vuel').click(function () {
+               tab('vuelo_index')
+            });
+            });
+
+        function tab(ruta)
+        {
+            $.ajax
+            ({
+                type: 'POST',
+                url: Routing.generate(ruta)
+            })
+                    .done(function (response) {
+                        $(formMessages).removeClass('error');
+                        $(formMessages).html(response);
+                        $('#name').val('');
+                        $('#email').val('');
+                        $('#message').val('');
+                        $('#tabla').dataTable();
+                    })
+                    .fail(function (data) {
+                        $(formMessages).removeClass('success');
+                        $(formMessages).addClass('error');
+
+                        if (data.responseText !== '') {
+                            $(formMessages).text(data.responseText);
+                        }
+                        else {
+                            $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                        }
+                    });
+            if ($("#busqueda").is(':visible'))
+            {
+
+            }else
+            {
+                $("#busqueda").slideToggle(function ()
+                {
+                    if ($("#busqueda").is(':visible'))
+                    {
+                        $("html, body").animate({scrollTop: $("#busqueda").offset().top});
+                    }
+                });
+            }
+
+        }
+            function spa(ruta)
+            {
+                $.ajax
+                ({
+                    type: 'POST',
+                    url: Routing.generate(ruta)
+                })
+                .done(function (response)
+                {
+                            $(formMessages).removeClass('error');
+                            $(formMessages).html(response);
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#message').val('');
+                })
+                .fail(function (data)
+                {
+                    $(formMessages).removeClass('success');
+                    $(formMessages).addClass('error');
+
+                    if (data.responseText !== '')
+                    {
+                        $(formMessages).text(data.responseText);
+                    }
+                    else
+                    {
+                        $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                    }
+                });
+                if ($("#busqueda").is(':visible'))
+                {
+
+                }else
+                {
+                    $("#busqueda").slideToggle(function ()
+                    {
+                        if ($("#busqueda").is(':visible'))
+                        {
+                            $("html, body").animate({scrollTop: $("#busqueda").offset().top});
+                        }
+                    });
+                }
+
+
+                $.ajax
+                ({
+                    url: Routing.generate('ciudad_index'),
+                    content: "JSON",
+                    success: function (json)
+                    {
+                        $.each(json, function (i, value)
+                        {
+                            $('#autocomplete-destino').append($('<option>').text(value.ciudad).attr('value', value.ciudad));
+                            $('#autocomplete-origen').append($('<option>').text(value.ciudad).attr('value', value.ciudad));
+                        });
+                    }
+                });
+                $.ajax
+                ({
+                    url: Routing.generate('tipo_index'),
+                    content: "JSON",
+                    success: function (json)
+                    {
+                        $.each(json, function (i, value)
+                        {
+                            $('#clase').append($('<option>').text(value.tipo).attr('value', value.tipo));
+                        });
+                    }
+                });
+
+                $.ajax
+                ({
+                    url: Routing.generate('hotel_index'),
+                    content: "JSON",
+                    success: function (json)
+                    {
+                        $.each(json, function (i, value)
+                        {
+                            $('#hotel').append($('<option>').text(value.hotel).attr('value', value.hotel));
+                        });
+                        $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+                    }
+                });
+            }
+
+            var formulario = $('#formulario');
+            var formMessages = $('#form-messages');
+            formulario.submit(function (event) {
+                event.preventDefault();
+                var formData = $(formulario).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: $(formulario).attr('action'),
+                    data: formData
+                })
+                        .done(function(response) {
+                            // Make sure that the formMessages div has the 'success' class.
+                            $(formMessages).removeClass('error');
+
+                            // Set the message text.
+                            $(formMessages).html(response);
+
+                            // Clear the form.
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#message').val('');
+                            $('#tabla').DataTable();
+                            if ($("#tabla").is(':visible')) {
+                                $("html, body").animate({scrollTop: $("#tabla").offset().top});
+                            }
+                        })
+                        .fail(function(data) {
+                            // Make sure that the formMessages div has the 'error' class.
+                            $(formMessages).removeClass('success');
+                            $(formMessages).addClass('error');
+
+                            // Set the message text.
+                            if (data.responseText !== '') {
+                                $(formMessages).text(data.responseText);
+                            } else {
+                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                            }
+                        })
+            });
+    </script>
 {% endblock %}

@@ -1,31 +1,8 @@
-{% extends 'base.html.twig' %}
-{% block header %}
-    <nav class="nav-extended blue blue-lighten-2">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img src="{{ asset("assets/img/logo.png") }}" alt="Logo"></a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Inicio</a></li>
-                <li><a href="badges.html">Admin</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="sass.html">Inicio</a></li>
-                <li><a href="badges.html">Admin</a></li>
-            </ul>
-
-            <ul class="tabs tabs-transparent">
-                <li class="tab"><a target="_self"  href="/">Vuelo</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_hotel') }}">Vuelo + Hotel</a></li>
-                <li class="tab"><a  target="_self" class="active" href="{{ path('vuelo_index') }}">Listado de vuelos</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_index') }}">Listado de hoteles</a></li>
-                <li class="tab"><a  target="_self" href="{{ path('vuelo_index') }}">Listado de clientes</a></li>
-            </ul>
-        </div>
-    </nav>
-{% endblock %}
-{% block body %}
-    <div class="container">
-        <div class="row">
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Vuelos disponibles</h3>
+    </div>
+    <div class="panel-body">
             <table class="table" id="tabla">
                 <thead>
                 <tr>
@@ -33,6 +10,8 @@
                     <th>Precio</th>
                     <th>Hora</th>
                     <th>Tipo</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -43,6 +22,8 @@
                         <td>{{ vuelo.precio }}</td>
                         <td>{% if vuelo.hora %}{{ vuelo.hora|date('H:i:s') }}{% endif %}</td>
                         <td>{{ vuelo.idTipo }}</td>
+                        <td>{{ vuelo.origen }}</td>
+                        <td>{{ vuelo.destino }}</td>
                         <td>
                             <ul>
                                 <li>
@@ -59,10 +40,3 @@
             </table>
         </div>
     </div>
-
-    <ul>
-        <li>
-            <a class="btn" href="{{ path('vuelo_new') }}">Crear nuevo vuelo</a>
-        </li>
-    </ul>
-{% endblock %}

@@ -1,16 +1,5 @@
-$(".button-collapse").sideNav();
+
 $(document).ready(function () {
-    $('#timepicker').pickatime({
-        autoclose: false,
-        twelvehour: false
-    });
-
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-
-
     $.getJSON(Routing.generate('ciudad_index'), function( data ) {
     $( "#autocomplete-destino" ).autocomplete(
         {
@@ -22,7 +11,6 @@ $(document).ready(function () {
             });
     });
 
-    $("#tabla").DataTable();
     $.ajax({
         url: Routing.generate('tipo_index'),
         content: "JSON",

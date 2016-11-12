@@ -13,6 +13,11 @@
     <field name="fecha" type="date" column="fecha" nullable="true"/>
     <field name="precio" type="decimal" column="precio" precision="10" scale="0" nullable="true"/>
     <field name="hora" type="datetime" column="hora" nullable="true"/>
+    <field name="costo" type="integer" column="costo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
     <many-to-one field="origen" target-entity="Ciudad" fetch="LAZY">
       <join-columns>
         <join-column name="origen" referenced-column-name="id_ciudad"/>

@@ -21,6 +21,15 @@ proyecto2_homepage:
 vuelo_hotel:
   path: /hoteles
   defaults: { _controller: Proyecto2Bundle:Default:hotel }
+  options:
+              expose: true
+
+
+vuelo:
+  path: /volar
+  defaults: { _controller: Proyecto2Bundle:Default:vuelo }
+  options:
+              expose: true
 
 busqueda_vuelo:
   path: /busqueda

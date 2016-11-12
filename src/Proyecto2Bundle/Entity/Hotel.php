@@ -50,4 +50,62 @@ class Hotel
     {
         return $this->idHotel;
     }
+    /**
+     * @var integer
+     */
+    private $costo;
+
+    /**
+     * @var integer
+     */
+    private $capacidad;
+
+
+    /**
+     * Set costo
+     *
+     * @param integer $costo
+     *
+     * @return Hotel
+     */
+    public function setCosto($costo)
+    {
+        $this->costo = $costo;
+
+        return $this;
+    }
+
+    /**
+     * Get costo
+     *
+     * @return integer
+     */
+    public function getCosto()
+    {
+        return $this->costo;
+    }
+
+    /**
+     * Set capacidad
+     *
+     * @param integer $capacidad
+     *
+     * @return Hotel
+     */
+    public function setCapacidad($capacidad)
+    {
+        $this->capacidad = $capacidad;
+
+        return $this;
+    }
+
+    /**
+     * Get capacidad
+     *
+     * @return integer
+     */
+    public function getCapacidad()
+    {
+        return $this->capacidad;
+    }
 }

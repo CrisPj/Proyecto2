@@ -1,16 +1,47 @@
-.brand-logo img {
- max-height: 64px;
+.navbar-brand {
+ padding: 0px;
+}
+
+html, body {
+ height: 100%;
+ width: 100%;
+}
+.navbar-brand>img {
+ height: 100%;
+ padding: 15px;
+ width: auto;
+}
+body {
+ padding-top: 50px;
+}
+.footer
+{font-size: 28px;
+ color: black}
+.text-vcenter {
+ display: table-cell;
+ text-align: center;
+ vertical-align: middle;
+}
+.text-vcenter h1 {
+ font-size: 4.5em;
+  font-weight: 700;
+ margin: 0;
+ padding: 0;
+}
+.text-white
+{
+ color: #fff;
+}
+#image {
+ background: url("../img/img.jpg") no-repeat center center fixed;
+ display: table;
+ height: 100%;
+ position: relative;
+ width: 100%;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
 }
  #cora {  color: red;  }
 .brand-logo{margin-left: 1%;}
-#image{
- background-image: url("../img/img.jpg");
-
-}
-#tagline .row {
- margin-bottom: 0;
-}
-
-footer.page-footer{
- margin-top: 0;
-}

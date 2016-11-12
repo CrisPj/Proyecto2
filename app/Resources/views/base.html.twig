@@ -4,40 +4,22 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Vuelazos{% endblock %}</title>
         {% block stylesheets %}
-            {% stylesheets filter="scssphp" output="assets/css/app.css"
-            'assets/materialize-src/sass/materialize.scss'
-            'assets/materialize-src/sass/clockpicker.scss'
-            'assets/css/style.css'
-            %}
-            <link href="{{ asset_url }}" rel="stylesheet" />
-            {% endstylesheets %}
-
         {% endblock %}
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
-
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
-        <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.0.2.min.js"></script>
-
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/js/flat-ui.min.js"></script>
+        <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
     </head>
-    <body>
-    {% block header %}{%  endblock %}
+    <body >
+    {% include 'default/header.html.twig' %}
         {% block body %}{% endblock %}
     {% include 'default/footer.html.twig' %}
     {% block javascript %}
-        {% javascripts filter="?jsqueeze" output="assets/js/app.js"
-            'assets/materialize-src/js/bin/materialize.min.js'
-        'assets/materialize-src/js/bin/materialize.clockpicker.js'
-        'assets/js/script.js'
-        %}
-        <script src="{{ asset_url }}"></script>
-
-        {% endjavascripts %}
     {% endblock %}
     </body>
 </html>

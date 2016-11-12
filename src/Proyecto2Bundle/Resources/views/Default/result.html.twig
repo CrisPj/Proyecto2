@@ -1,22 +1,33 @@
-<table id="example" class="display" width="100%" cellspacing="0">
-    <thead>
-    <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Origen</th>
-        <th>Destino</th>
-        <th>Tipo</th>
-        <th>Reservar</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Origen</th>
-        <th>Destino</th>
-        <th>Tipo</th>
-        <th>Reservar</th>
-    </tr>
-    </tfoot>
-</table>
+<div class="panel-body">
+    <table id="tabla" class="display" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Clase</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Precio</th>
+            <th>Reservar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vuelo in vuelos %}
+            <tr>
+                <td><a href="{{ path('vuelo_show', { 'id': vuelo.idVuelo }) }}">{{ vuelo.fecha|date('Y-m-d') }}</a></td>
+                <td>{% if vuelo.hora %}{{ vuelo.hora|date('H:i:s') }}{% endif %}</td>
+                <td>{{ vuelo.idTipo }}</td>
+                <td>{{ vuelo.origen }}</td>
+                <td>{{ vuelo.destino }}</td>
+                <td>{{ vuelo.precio }}</td>
+                <td>
+                    <button class="btn btn-info">Reservar</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+

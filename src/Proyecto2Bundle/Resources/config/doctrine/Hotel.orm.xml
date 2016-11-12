@@ -10,5 +10,15 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="costo" type="integer" column="costo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="capacidad" type="integer" column="capacidad" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

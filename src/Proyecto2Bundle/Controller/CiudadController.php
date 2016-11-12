@@ -4,6 +4,7 @@ namespace Proyecto2Bundle\Controller;
 
 use Proyecto2Bundle\Entity\Ciudad;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -17,17 +18,16 @@ class CiudadController extends Controller
      * Lists all ciudad entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $ciudades = $em->getRepository('Proyecto2Bundle:Ciudad')->findAll();
-        $json = array();
-        foreach ($ciudades as $ciudad)
-        {
-            $json = $json + array($ciudad->getCiudad() => null) ;
-        }
-        return new Response(json_encode($json,JSON_PRETTY_PRINT), 200,          ['Content-Type' => 'application/json']);
+            $ciudades = $em->getRepository('Proyecto2Bundle:Ciudad')->findAll();
+            $json = array();
+            foreach ($ciudades as $ciudad)
+            {
+                $json[] = array("ciudad" => $ciudad->getCiudad()) ;
+            }
+            return new Response(json_encode($json,JSON_PRETTY_PRINT), 200,          ['Content-Type' => 'application/json']);
     }
 
     /**

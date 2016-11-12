@@ -8,6 +8,11 @@
     <id name="idReservacion" type="integer" column="id_reservacion"/>
     <id name="idVuelo" type="integer" column="id_vuelo"/>
     <id name="idCliente" association-key="true"/>
+    <field name="total" type="integer" column="total" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
     <one-to-one field="idCliente" target-entity="Cliente" fetch="LAZY">
       <join-columns>
         <join-column name="id_cliente" referenced-column-name="id_cliente"/>
