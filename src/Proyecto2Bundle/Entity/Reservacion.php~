@@ -124,4 +124,3 @@ class Reservacion
         return $this->idHotel;
     }
 }
-

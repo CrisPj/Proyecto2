@@ -167,5 +167,33 @@ class Vuelo
     {
         return $this->idTipo;
     }
-}
+    /**
+     * @var \DateTime
+     */
+    private $hora;
 
+
+    /**
+     * Set hora
+     *
+     * @param \DateTime $hora
+     *
+     * @return Vuelo
+     */
+    public function setHora($hora)
+    {
+        $this->hora = $hora;
+
+        return $this;
+    }
+
+    /**
+     * Get hora
+     *
+     * @return \DateTime
+     */
+    public function getHora()
+    {
+        return $this->hora;
+    }
+}

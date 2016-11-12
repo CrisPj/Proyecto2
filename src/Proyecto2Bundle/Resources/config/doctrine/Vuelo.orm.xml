@@ -11,11 +11,8 @@
       <sequence-generator sequence-name="vuelo_id_vuelo_seq" allocation-size="1" initial-value="1"/>
     </id>
     <field name="fecha" type="date" column="fecha" nullable="true"/>
-    <field name="precio" type="integer" column="precio" nullable="true">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
+    <field name="precio" type="decimal" column="precio" precision="10" scale="0" nullable="true"/>
+    <field name="hora" type="datetime" column="hora" nullable="true"/>
     <many-to-one field="origen" target-entity="Ciudad" fetch="LAZY">
       <join-columns>
         <join-column name="origen" referenced-column-name="id_ciudad"/>

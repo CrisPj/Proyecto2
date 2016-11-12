@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vuelos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Precio</th>
+                <th>Hora</th>
+                <th>Idvuelo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vuelo in vuelos %}
+            <tr>
+                <td><a href="{{ path('vuelo_show', { 'id': vuelo.idVuelo }) }}">{{ vuelo.fecha|date('Y-m-d') }}</a></td>
+                <td>{{ vuelo.precio }}</td>
+                <td>{% if vuelo.hora %}{{ vuelo.hora|date('H:i:s') }}{% endif %}</td>
+                <td>{{ vuelo.idVuelo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vuelo_show', { 'id': vuelo.idVuelo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vuelo_edit', { 'id': vuelo.idVuelo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vuelo_new') }}">Create a new vuelo</a>
+        </li>
+    </ul>
+{% endblock %}

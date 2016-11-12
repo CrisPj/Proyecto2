@@ -81,4 +81,3 @@ class Cupones
         return $this->idCupon;
     }
 }
-

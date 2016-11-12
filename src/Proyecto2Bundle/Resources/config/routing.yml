@@ -6,6 +6,10 @@ proyecto2_ciudad:
         resource: "@Proyecto2Bundle/Resources/config/routing/ciudad.yml"
         prefix:   /ciudad
 
+proyecto2_vuelo:
+        resource: "@Proyecto2Bundle/Resources/config/routing/vuelo.yml"
+        prefix:   /vuelo
+
 proyecto2_hotel:
         resource: "@Proyecto2Bundle/Resources/config/routing/hotel.yml"
         prefix:   /hotel
@@ -17,4 +21,8 @@ proyecto2_homepage:
 vuelo_hotel:
   path: /hoteles
   defaults: { _controller: Proyecto2Bundle:Default:hotel }
+
+busqueda_vuelo:
+  path: /busqueda
+  defaults: { _controller: Proyecto2Bundle:Default:busquedaVuelo }
 

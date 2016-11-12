@@ -7,6 +7,7 @@ namespace Proyecto2Bundle\Entity;
  */
 class Vuelo
 {
+
     /**
      * @var \DateTime
      */
@@ -52,6 +53,11 @@ class Vuelo
         return $this;
     }
 
+    public function setIdVuelo($idVuelo)
+    {
+        $this->idVuelo = $idVuelo;
+        return $this;
+    }
     /**
      * Get fecha
      *
@@ -166,5 +172,34 @@ class Vuelo
     public function getIdTipo()
     {
         return $this->idTipo;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $hora;
+
+
+    /**
+     * Set hora
+     *
+     * @param \DateTime $hora
+     *
+     * @return Vuelo
+     */
+    public function setHora($hora)
+    {
+        $this->hora = $hora;
+
+        return $this;
+    }
+
+    /**
+     * Get hora
+     *
+     * @return \DateTime
+     */
+    public function getHora()
+    {
+        return $this->hora;
     }
 }

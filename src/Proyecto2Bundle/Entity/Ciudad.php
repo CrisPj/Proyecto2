@@ -51,4 +51,9 @@ class Ciudad
     {
         return $this->idCiudad;
     }
+
+    public function __toString()
+    {
+        return $this->getCiudad();
+    }
 }

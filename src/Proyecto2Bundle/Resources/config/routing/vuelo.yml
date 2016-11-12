@@ -1,0 +1,24 @@
+vuelo_index:
+    path:     /
+    defaults: { _controller: "Proyecto2Bundle:Vuelo:index" }
+    methods:  GET
+
+vuelo_show:
+    path:     /{id}/show
+    defaults: { _controller: "Proyecto2Bundle:Vuelo:show" }
+    methods:  GET
+
+vuelo_new:
+    path:     /new
+    defaults: { _controller: "Proyecto2Bundle:Vuelo:new" }
+    methods:  [GET, POST]
+
+vuelo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "Proyecto2Bundle:Vuelo:edit" }
+    methods:  [GET, POST]
+
+vuelo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "Proyecto2Bundle:Vuelo:delete" }
+    methods:  DELETE

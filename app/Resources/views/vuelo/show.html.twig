@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vuelo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if vuelo.fecha %}{{ vuelo.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ vuelo.precio }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{% if vuelo.hora %}{{ vuelo.hora|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idvuelo</th>
+                <td>{{ vuelo.idVuelo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vuelo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('vuelo_edit', { 'id': vuelo.idVuelo }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

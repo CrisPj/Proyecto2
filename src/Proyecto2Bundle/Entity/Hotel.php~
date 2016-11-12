@@ -18,12 +18,6 @@ class Hotel
     private $idHotel;
 
     /**
-     * @var \Proyecto2Bundle\Entity\Ciudad
-     */
-    private $idCiudad;
-
-
-    /**
      * Set hotel
      *
      * @param string $hotel
@@ -56,29 +50,4 @@ class Hotel
     {
         return $this->idHotel;
     }
-
-    /**
-     * Set idCiudad
-     *
-     * @param \Proyecto2Bundle\Entity\Ciudad $idCiudad
-     *
-     * @return Hotel
-     */
-    public function setIdCiudad(\Proyecto2Bundle\Entity\Ciudad $idCiudad = null)
-    {
-        $this->idCiudad = $idCiudad;
-
-        return $this;
-    }
-
-    /**
-     * Get idCiudad
-     *
-     * @return \Proyecto2Bundle\Entity\Ciudad
-     */
-    public function getIdCiudad()
-    {
-        return $this->idCiudad;
-    }
 }
-

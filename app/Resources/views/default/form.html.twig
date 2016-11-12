@@ -2,35 +2,35 @@
         <div class="col s8 offset-s2">
             <div class="card-panel">
                 <h2>Busqueda de Vuelos</h2>
-                <form action="">
+                <form ic-post-to="{{ path('busqueda_vuelo') }}"  ic-target='#resultados' method="post">
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">update</i>
-                            <input type="date" class="datepicker" id="fecha" title="Fecha">
+                            <input type="date" class="datepicker" id="fecha" name="fecha" title="Fecha">
                             <label for="fecha">Fecha</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">hourglass_empty</i>
-                            <input id="timepicker" class="timepicker" type="time">
+                            <input id="timepicker" class="timepicker" name="hora" type="time">
                             <label for="timepicker">Hora</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">flight takeoff</i>
-                            <input type="text" id="autocomplete-origen" class="autocomplete">
+                            <input type="text" id="autocomplete-origen" class="autocomplete" name="origen">
                             <label for="autocomplete-origen">Ciudad Origen</label>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix">flight land</i>
-                            <input type="text" id="autocomplete-destino" class="autocomplete">
+                            <input type="text" id="autocomplete-destino" class="autocomplete name="destino"">
                             <label for="autocomplete-destino">Ciudad Destino</label>
                         </div>
                     </div>
                     <div class="row">
                             <div class="input-field col s12">
-                                <select id="clase">
+                                <select id="clase" name="clase">
                                 </select>
                                 <label for="clase">Tipo</label>
                             </div>

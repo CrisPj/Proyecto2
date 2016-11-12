@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Proyecto2Bundle\Entity\Hotel" table="hotel">
-    <indexes>
-      <index name="IDX_3535ED9A8B1B073" columns="id_ciudad"/>
-    </indexes>
     <id name="idHotel" type="integer" column="id_hotel">
       <generator strategy="SEQUENCE"/>
       <sequence-generator sequence-name="hotel_id_hotel_seq" allocation-size="1" initial-value="1"/>
