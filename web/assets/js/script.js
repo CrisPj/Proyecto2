@@ -22,6 +22,7 @@ $(document).ready(function () {
             });
     });
 
+    $("#tabla").DataTable();
     $.ajax({
         url: Routing.generate('tipo_index'),
         content: "JSON",
