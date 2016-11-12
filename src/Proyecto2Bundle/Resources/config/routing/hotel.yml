@@ -1,7 +1,7 @@
 hotel_index:
     path:     /
     defaults: { _controller: "Proyecto2Bundle:Hotel:index" }
-    methods:  GET
+    methods:  [GET,POST]
     options:
             expose: true
 

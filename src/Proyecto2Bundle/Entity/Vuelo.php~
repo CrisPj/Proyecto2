@@ -202,4 +202,33 @@ class Vuelo
     {
         return $this->hora;
     }
+    /**
+     * @var integer
+     */
+    private $costo;
+
+
+    /**
+     * Set costo
+     *
+     * @param integer $costo
+     *
+     * @return Vuelo
+     */
+    public function setCosto($costo)
+    {
+        $this->costo = $costo;
+
+        return $this;
+    }
+
+    /**
+     * Get costo
+     *
+     * @return integer
+     */
+    public function getCosto()
+    {
+        return $this->costo;
+    }
 }

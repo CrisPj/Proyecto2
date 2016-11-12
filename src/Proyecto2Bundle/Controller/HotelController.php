@@ -4,6 +4,7 @@ namespace Proyecto2Bundle\Controller;
 
 use Proyecto2Bundle\Entity\Hotel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -17,16 +18,17 @@ class HotelController extends Controller
      * Lists all hotel entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $id = $request->request->get('id');
         $em = $this->getDoctrine()->getManager();
-
-        $hoteles = $em->getRepository('Proyecto2Bundle:Hotel')->findAll();
-
+        $ciudad = $em->getRepository('Proyecto2Bundle:Ciudad')->findOneBy(array("ciudad"=>$id));
+        $hoteles = $em->getRepository('Proyecto2Bundle:Hotel')->findBy(array("idCiudad" => $ciudad->getIdCiudad()));
         $json = array();
         foreach ($hoteles as $hotel)
         {
-            $json[] = array("hotel" => $hotel->getHotel()) ;
+            $json[] = array("id_hotel"=>$hotel->getIdHotel(),
+            "hotel"=> $hotel->getHotel()) ;
         }
         return new Response(json_encode($json,JSON_PRETTY_PRINT), 200,          ['Content-Type' => 'application/json']);
     }

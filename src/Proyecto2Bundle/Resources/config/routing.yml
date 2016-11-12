@@ -14,6 +14,11 @@ proyecto2_hotel:
         resource: "@Proyecto2Bundle/Resources/config/routing/hotel.yml"
         prefix:   /hotel
 
+proyecto2_cliente:
+        resource: "@Proyecto2Bundle/Resources/config/routing/cliente.yml"
+        prefix:   /cliente
+
+
 proyecto2_homepage:
     path:     /
     defaults: { _controller: Proyecto2Bundle:Default:index }

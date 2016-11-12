@@ -8,6 +8,9 @@
             <th>Origen</th>
             <th>Destino</th>
             <th>Precio</th>
+            {% if hotel == false %}
+            <td>Hotel</td>
+            {%  endif %}
             <th>Reservar</th>
         </tr>
         </thead>
@@ -20,6 +23,9 @@
                 <td>{{ vuelo.origen }}</td>
                 <td>{{ vuelo.destino }}</td>
                 <td>{{ vuelo.precio }}</td>
+                {% if hotel == false %}
+                <td>{{ hotel  }}</td>
+                {%  endif %}
                 <td>
                     <button class="btn btn-info">Reservar</button>
                 </td>

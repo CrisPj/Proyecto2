@@ -1,0 +1,42 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Listado de Clientes</h3>
+    </div>
+    <div class="panel-body">
+    <table class="table" id="tabla">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidopaterno</th>
+                <th>Apellidomaterno</th>
+                <th>Direccion</th>
+                <th>Direccionfacturacion</th>
+                <th>Idcliente</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cliente in clientes %}
+            <tr>
+                <td><a href="{{ path('cliente_show', { 'id': cliente.idCliente }) }}">{{ cliente.nombre }}</a></td>
+                <td>{{ cliente.apellidoPaterno }}</td>
+                <td>{{ cliente.apellidoMaterno }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.direccionFacturacion }}</td>
+                <td>{{ cliente.idCliente }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cliente_show', { 'id': cliente.idCliente }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cliente_edit', { 'id': cliente.idCliente }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>

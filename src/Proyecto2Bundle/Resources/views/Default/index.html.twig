@@ -8,11 +8,11 @@
                 <a id="busquedabtn2" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelo+hotel</a>
             </div>
         </div>
-    <div  class="card-panel" id="busqueda">
+
         <div class="container">
+            <div  class="card-panel" id="busqueda"></div>
             <div id="form-messages" class="panel panel-info"></div>
         </div>
-    </div>
 
 {% endblock %}
 {% block stylesheets %}
@@ -26,15 +26,70 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
     <script>
 
+        var formMessages = $('#form-messages');
+        function getval(sel) {
+            $.ajax
+            ({
+                url: Routing.generate('hotel_index'),
+                content: "JSON",
+                type: 'POST',
+                data: {id: sel.value},
+                success: function (json)
+                {
+                    $('#hotel').html("");
+                    $.each(json, function (i, value)
+                    {
+                        $('#hotel').append($('<option>').text(value.hotel).attr('value', value.id_hotel));
+                    });
+                    $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+                }
+            });
+        }
         $(document).ready(function () {
             $('#busquedabtn2').click(function () {
                 spa('vuelo_hotel');
                 });
             $('#busquedabtn').click(function () {
                 spa('vuelo');
+                var formulario = $('#formulario');
             });
+
+
             $('#vuel').click(function () {
                tab('vuelo_index')
+            });
+            $('#clien').click(function () {
+                tab('cliente_index')
+            });
+
+            $('#busqueda').on ('submit', '#formulario',function (event) {
+                event.preventDefault();
+                var formData = $(formulario).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: $(formulario).attr('action'),
+                    data: formData
+                })
+                        .done(function(response) {
+                            $(formMessages).removeClass('error');
+                            $(formMessages).html(response);
+                            $('#tabla').DataTable();
+                            if ($("#tabla").is(':visible')) {
+                                $("html, body").animate({scrollTop: $("#tabla").offset().top});
+                            }
+                        })
+                        .fail(function(data) {
+                            // Make sure that the formMessages div has the 'error' class.
+                            $(formMessages).removeClass('success');
+                            $(formMessages).addClass('error');
+
+                            // Set the message text.
+                            if (data.responseText !== '') {
+                                $(formMessages).text(data.responseText);
+                            } else {
+                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                            }
+                        })
             });
             });
 
@@ -66,7 +121,7 @@
                     });
             if ($("#busqueda").is(':visible'))
             {
-
+                $("html, body").animate({scrollTop: $("#busqueda").offset().top});
             }else
             {
                 $("#busqueda").slideToggle(function ()
@@ -89,7 +144,7 @@
                 .done(function (response)
                 {
                             $(formMessages).removeClass('error');
-                            $(formMessages).html(response);
+                            $('#busqueda').html(response);
                             $('#name').val('');
                             $('#email').val('');
                             $('#message').val('');
@@ -146,62 +201,9 @@
                         {
                             $('#clase').append($('<option>').text(value.tipo).attr('value', value.tipo));
                         });
-                    }
-                });
-
-                $.ajax
-                ({
-                    url: Routing.generate('hotel_index'),
-                    content: "JSON",
-                    success: function (json)
-                    {
-                        $.each(json, function (i, value)
-                        {
-                            $('#hotel').append($('<option>').text(value.hotel).attr('value', value.hotel));
-                        });
                         $("select").select2({dropdownCssClass: 'dropdown-inverse'});
                     }
                 });
             }
-
-            var formulario = $('#formulario');
-            var formMessages = $('#form-messages');
-            formulario.submit(function (event) {
-                event.preventDefault();
-                var formData = $(formulario).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: $(formulario).attr('action'),
-                    data: formData
-                })
-                        .done(function(response) {
-                            // Make sure that the formMessages div has the 'success' class.
-                            $(formMessages).removeClass('error');
-
-                            // Set the message text.
-                            $(formMessages).html(response);
-
-                            // Clear the form.
-                            $('#name').val('');
-                            $('#email').val('');
-                            $('#message').val('');
-                            $('#tabla').DataTable();
-                            if ($("#tabla").is(':visible')) {
-                                $("html, body").animate({scrollTop: $("#tabla").offset().top});
-                            }
-                        })
-                        .fail(function(data) {
-                            // Make sure that the formMessages div has the 'error' class.
-                            $(formMessages).removeClass('success');
-                            $(formMessages).addClass('error');
-
-                            // Set the message text.
-                            if (data.responseText !== '') {
-                                $(formMessages).text(data.responseText);
-                            } else {
-                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
-                            }
-                        })
-            });
     </script>
 {% endblock %}
