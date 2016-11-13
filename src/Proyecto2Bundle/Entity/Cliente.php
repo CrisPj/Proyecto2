@@ -1,11 +1,12 @@
 <?php
 
 namespace Proyecto2Bundle\Entity;
-
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Cliente
  */
-class Cliente
+class Cliente extends BaseUser
 {
     /**
      * @var string
@@ -31,11 +32,6 @@ class Cliente
      * @var string
      */
     private $direccionFacturacion;
-
-    /**
-     * @var integer
-     */
-    private $idCliente;
 
     /**
      * @var \Proyecto2Bundle\Entity\MetodoPago
@@ -163,15 +159,6 @@ class Cliente
         return $this->direccionFacturacion;
     }
 
-    /**
-     * Get idCliente
-     *
-     * @return integer
-     */
-    public function getIdCliente()
-    {
-        return $this->idCliente;
-    }
 
     /**
      * Set metodoPago
@@ -196,33 +183,78 @@ class Cliente
     {
         return $this->metodoPago;
     }
-    /**
-     * @var string
-     */
-    private $password;
-
 
     /**
-     * Set password
+     * Get enabled
      *
-     * @param string $password
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
      *
      * @return Cliente
      */
-    public function setPassword($password)
+    public function setSalt($salt)
     {
-        $this->password = $password;
+        $this->salt = $salt;
 
         return $this;
     }
 
     /**
-     * Get password
+     * Get locked
      *
-     * @return string
+     * @return boolean
      */
-    public function getPassword()
+    public function getLocked()
     {
-        return $this->password;
+        return $this->locked;
+    }
+
+    /**
+     * Get expired
+     *
+     * @return boolean
+     */
+    public function getExpired()
+    {
+        return $this->expired;
+    }
+
+    /**
+     * Get expiresAt
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * Get credentialsExpired
+     *
+     * @return boolean
+     */
+    public function getCredentialsExpired()
+    {
+        return $this->credentialsExpired;
+    }
+
+    /**
+     * Get credentialsExpireAt
+     *
+     * @return \DateTime
+     */
+    public function getCredentialsExpireAt()
+    {
+        return $this->credentialsExpireAt;
     }
 }

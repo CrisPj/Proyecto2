@@ -5,14 +5,23 @@ Proyecto2Bundle\Entity\Cliente:
         IDX_F41C9B258A0E8868:
             columns:
                 - metodo_pago
+    uniqueConstraints:
+        uniq_f41c9b25c05fb297:
+            columns:
+                - confirmation_token
+        uniq_f41c9b2592fc23a8:
+            columns:
+                - username_canonical
+        uniq_f41c9b25a0d96fbf:
+            columns:
+                - email_canonical
     id:
-        idCliente:
+        id:
             type: integer
             nullable: false
             options:
                 unsigned: false
             id: true
-            column: id_cliente
             generator:
                 strategy: SEQUENCE
     fields:
@@ -49,12 +58,6 @@ Proyecto2Bundle\Entity\Cliente:
             options:
                 fixed: false
             column: direccion_facturacion
-        password:
-            type: string
-            nullable: false
-            length: 30
-            options:
-                fixed: false
     manyToOne:
         metodoPago:
             targetEntity: MetodoPago

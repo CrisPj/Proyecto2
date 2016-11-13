@@ -38,7 +38,7 @@ Proyecto2Bundle\Entity\Reservacion:
             inversedBy: null
             joinColumns:
                 id_cliente:
-                    referencedColumnName: id_cliente
+                    referencedColumnName: id
             orphanRemoval: false
     manyToOne:
         idHotel:

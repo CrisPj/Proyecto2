@@ -1,11 +1,12 @@
 <?php
 
 namespace Proyecto2Bundle\Entity;
-
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Cliente
  */
-class Cliente
+class Cliente extends BaseUser
 {
     /**
      * @var string

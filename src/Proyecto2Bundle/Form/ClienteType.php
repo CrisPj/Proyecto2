@@ -15,6 +15,16 @@ class ClienteType extends AbstractType
     {
         $builder->add('nombre')->add('apellidoPaterno')->add('apellidoMaterno')->add('direccion')->add('direccionFacturacion')->add('metodoPago')        ;
     }
+
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'app_user_profile';
+    }
     
     /**
      * {@inheritdoc}
@@ -25,14 +35,5 @@ class ClienteType extends AbstractType
             'data_class' => 'Proyecto2Bundle\Entity\Cliente'
         ));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'proyecto2bundle_cliente';
-    }
-
 
 }
