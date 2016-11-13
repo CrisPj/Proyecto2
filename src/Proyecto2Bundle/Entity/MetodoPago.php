@@ -51,4 +51,9 @@ class MetodoPago
     {
         return $this->idMetodoPago;
     }
+
+    public function __toString()
+    {
+        return $this->getMetodoPago();
+    }
 }

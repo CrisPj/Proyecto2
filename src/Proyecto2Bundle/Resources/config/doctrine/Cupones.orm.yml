@@ -1,0 +1,24 @@
+Proyecto2Bundle\Entity\Cupones:
+    type: entity
+    table: cupones
+    id:
+        idCupon:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_cupon
+            generator:
+                strategy: SEQUENCE
+    fields:
+        cupon:
+            type: string
+            nullable: true
+            length: 15
+            options:
+                fixed: false
+        estado:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

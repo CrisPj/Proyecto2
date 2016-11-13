@@ -1,0 +1,21 @@
+Proyecto2Bundle\Entity\Ciudad:
+    type: entity
+    table: ciudad
+    id:
+        idCiudad:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_ciudad
+            generator:
+                strategy: SEQUENCE
+    fields:
+        ciudad:
+            type: string
+            nullable: false
+            length: 500
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

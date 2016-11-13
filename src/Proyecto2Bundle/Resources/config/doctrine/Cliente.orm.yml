@@ -1,0 +1,69 @@
+Proyecto2Bundle\Entity\Cliente:
+    type: entity
+    table: cliente
+    indexes:
+        IDX_F41C9B258A0E8868:
+            columns:
+                - metodo_pago
+    id:
+        idCliente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_cliente
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        apellidoPaterno:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: apellido_paterno
+        apellidoMaterno:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: apellido_materno
+        direccion:
+            type: string
+            nullable: true
+            length: 300
+            options:
+                fixed: false
+        direccionFacturacion:
+            type: string
+            nullable: true
+            length: 300
+            options:
+                fixed: false
+            column: direccion_facturacion
+        password:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+    manyToOne:
+        metodoPago:
+            targetEntity: MetodoPago
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                metodo_pago:
+                    referencedColumnName: id_metodo_pago
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

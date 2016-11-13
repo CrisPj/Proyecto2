@@ -1,0 +1,22 @@
+Proyecto2Bundle\Entity\MetodoPago:
+    type: entity
+    table: metodo_pago
+    id:
+        idMetodoPago:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_metodo_pago
+            generator:
+                strategy: SEQUENCE
+    fields:
+        metodoPago:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: metodo_pago
+    lifecycleCallbacks: {  }

@@ -1,0 +1,72 @@
+Proyecto2Bundle\Entity\Vuelo:
+    type: entity
+    table: vuelo
+    indexes:
+        IDX_B608E37572441912:
+            columns:
+                - origen
+        IDX_B608E37581F64EFA:
+            columns:
+                - destino
+        IDX_B608E375FB0D0145:
+            columns:
+                - id_tipo
+    id:
+        idVuelo:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_vuelo
+            generator:
+                strategy: SEQUENCE
+    fields:
+        fecha:
+            type: date
+            nullable: true
+        precio:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 0
+        hora:
+            type: datetime
+            nullable: true
+        costo:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        origen:
+            targetEntity: Ciudad
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                origen:
+                    referencedColumnName: id_ciudad
+            orphanRemoval: false
+        destino:
+            targetEntity: Ciudad
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                destino:
+                    referencedColumnName: id_ciudad
+            orphanRemoval: false
+        idTipo:
+            targetEntity: Tipo
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo:
+                    referencedColumnName: id_tipo
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

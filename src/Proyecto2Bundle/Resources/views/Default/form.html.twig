@@ -3,15 +3,15 @@
             <h3 class="panel-title">Busqueda de Vuelos</h3>
         </div>
         <div class="panel-body">
-            <form action="{{ path('busqueda_vuelo') }}"  method="post" id="formulario">
+            <form action="{{ path('busqueda_vuelo') }}"  data-toggle="validator" role="form" method="post" id="formulario">
                 <div class="row">
                     <div class="col-xs-6">
                         <label for="fecha">Fecha</label>
-                        <input type="date" class="form-control" id="fecha" name="fecha" title="Fecha">
+                        <input type="date" class="form-control" id="fecha" name="fecha" title="Fecha" required>
                     </div>
                     <div class="col-xs-6">
                         <label for="timepicker">Hora</label>
-                        <input id="timepicker" class="form-control" name="hora" type="time">
+                        <input id="timepicker" class="form-control" name="hora" type="time" required>
                     </div>
                 </div>
                 <div class="row">

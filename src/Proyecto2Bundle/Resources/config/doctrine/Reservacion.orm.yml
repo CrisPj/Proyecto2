@@ -1,0 +1,54 @@
+Proyecto2Bundle\Entity\Reservacion:
+    type: entity
+    table: reservacion
+    indexes:
+        IDX_8F0626732A813255:
+            columns:
+                - id_cliente
+        IDX_8F062673EDD61FE9:
+            columns:
+                - id_hotel
+    id:
+        idReservacion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_reservacion
+        idVuelo:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_vuelo
+    fields:
+        total:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    oneToOne:
+        idCliente:
+            targetEntity: Cliente
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_cliente:
+                    referencedColumnName: id_cliente
+            orphanRemoval: false
+    manyToOne:
+        idHotel:
+            targetEntity: Hotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_hotel:
+                    referencedColumnName: id_hotel
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

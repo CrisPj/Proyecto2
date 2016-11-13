@@ -1,0 +1,21 @@
+Proyecto2Bundle\Entity\Tipo:
+    type: entity
+    table: tipo
+    id:
+        idTipo:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_tipo
+            generator:
+                strategy: SEQUENCE
+    fields:
+        tipo:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

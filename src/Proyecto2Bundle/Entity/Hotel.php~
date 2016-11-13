@@ -108,4 +108,33 @@ class Hotel
     {
         return $this->capacidad;
     }
+    /**
+     * @var \Proyecto2Bundle\Entity\Ciudad
+     */
+    private $idCiudad;
+
+
+    /**
+     * Set idCiudad
+     *
+     * @param \Proyecto2Bundle\Entity\Ciudad $idCiudad
+     *
+     * @return Hotel
+     */
+    public function setIdCiudad(\Proyecto2Bundle\Entity\Ciudad $idCiudad = null)
+    {
+        $this->idCiudad = $idCiudad;
+
+        return $this;
+    }
+
+    /**
+     * Get idCiudad
+     *
+     * @return \Proyecto2Bundle\Entity\Ciudad
+     */
+    public function getIdCiudad()
+    {
+        return $this->idCiudad;
+    }
 }

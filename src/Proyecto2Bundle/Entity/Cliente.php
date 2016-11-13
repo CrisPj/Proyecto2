@@ -196,4 +196,33 @@ class Cliente
     {
         return $this->metodoPago;
     }
+    /**
+     * @var string
+     */
+    private $password;
+
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Cliente
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
 }

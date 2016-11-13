@@ -1,0 +1,46 @@
+Proyecto2Bundle\Entity\Hotel:
+    type: entity
+    table: hotel
+    indexes:
+        IDX_3535ED9A8B1B073:
+            columns:
+                - id_ciudad
+    id:
+        idHotel:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_hotel
+            generator:
+                strategy: SEQUENCE
+    fields:
+        hotel:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        costo:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        capacidad:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        idCiudad:
+            targetEntity: Ciudad
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ciudad:
+                    referencedColumnName: id_ciudad
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
