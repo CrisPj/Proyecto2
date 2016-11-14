@@ -4,8 +4,13 @@
             <div class="text-vcenter">
                 <h1 class="text-white">Vuelos Python Team &copy</h1>
                 <h3>Reservaciones</h3>
-                <a id="busquedabtn" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelos</a>
-                <a id="busquedabtn2" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelo+hotel</a>
+                {% if app.user %}
+                    <a id="busquedabtn" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelos</a>
+                    <a id="busquedabtn2" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelo+hotel</a>
+                {% else %}
+                    <p>Para realizar una reservación es necesario iniciar sesións</p>
+                    <a href="/login" class="btn btn-info btn-lg">Registrarse</a>
+                {% endif %}
             </div>
         </div>
 
@@ -45,7 +50,8 @@
                 }
             });
         }
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             $('#busquedabtn2').click(function () {
                 spa('vuelo_hotel');
                 });

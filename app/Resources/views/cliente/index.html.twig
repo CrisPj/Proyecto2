@@ -7,30 +7,30 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Apellidopaterno</th>
-                <th>Apellidomaterno</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
                 <th>Direccion</th>
-                <th>Direccionfacturacion</th>
-                <th>Idcliente</th>
-                <th>Actions</th>
+                <th>Direccion Dacturacion</th>
+                <th>Id</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for cliente in clientes %}
             <tr>
-                <td><a href="{{ path('cliente_show', { 'id': cliente.idCliente }) }}">{{ cliente.nombre }}</a></td>
+                <td><a href="{{ path('cliente_show', { 'id': cliente.id }) }}">{{ cliente.nombre }}</a></td>
                 <td>{{ cliente.apellidoPaterno }}</td>
                 <td>{{ cliente.apellidoMaterno }}</td>
                 <td>{{ cliente.direccion }}</td>
                 <td>{{ cliente.direccionFacturacion }}</td>
-                <td>{{ cliente.idCliente }}</td>
+                <td>{{ cliente.id }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('cliente_show', { 'id': cliente.idCliente }) }}">show</a>
+                            <a href="{{ path('cliente_show', { 'id': cliente.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('cliente_edit', { 'id': cliente.idCliente }) }}">edit</a>
+                            <a href="{{ path('cliente_edit', { 'id': cliente.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
