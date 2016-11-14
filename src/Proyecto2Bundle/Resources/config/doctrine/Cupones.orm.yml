@@ -21,4 +21,9 @@ Proyecto2Bundle\Entity\Cupones:
         estado:
             type: boolean
             nullable: true
+        porcentaje:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
     lifecycleCallbacks: {  }

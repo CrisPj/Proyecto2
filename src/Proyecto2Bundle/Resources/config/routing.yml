@@ -17,7 +17,9 @@ proyecto2_hotel:
 proyecto2_cliente:
         resource: "@Proyecto2Bundle/Resources/config/routing/cliente.yml"
         prefix:   /cliente
-
+proyecto2_cupones:
+        resource: "@Proyecto2Bundle/Resources/config/routing/cupones.yml"
+        prefix:   /cupones
 
 proyecto2_homepage:
     path:     /

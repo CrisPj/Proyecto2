@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cupones list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcupon</th>
+                <th>Cupon</th>
+                <th>Estado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cupone in cupones %}
+            <tr>
+                <td><a href="{{ path('cupones_show', { 'id': cupone.idCupon }) }}">{{ cupone.idCupon }}</a></td>
+                <td>{{ cupone.cupon }}</td>
+                <td>{% if cupone.estado %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cupones_show', { 'id': cupone.idCupon }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

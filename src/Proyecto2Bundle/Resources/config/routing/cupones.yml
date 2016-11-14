@@ -1,0 +1,7 @@
+cupones_show:
+    path:     /
+    defaults: { _controller: "Proyecto2Bundle:Cupones:show" }
+    methods:  [GET, POST]
+
+
+

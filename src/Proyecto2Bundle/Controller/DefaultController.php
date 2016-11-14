@@ -15,7 +15,57 @@ class DefaultController extends Controller
 
     public function listoAction(Request $request)
     {
-        $request->getSession()->remove('carro');
+        $conn = $this->getDoctrine()->getManager()->getConnection();
+        $ticket =$request->get('ticket');
+        if ($ticket)
+        {
+            $id_cupon = $this->getDoctrine()->getRepository('Proyecto2Bundle:Cupones')->findOneBy(array('cupon'=>$ticket))->getIdCupon();
+            $sql = "update cupones set estado = true where id_cupon = ".$id_cupon.";";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+        }
+        else
+        {
+            $ticket = 1;
+        }
+
+        $carro = $request->getSession()->get('carro');
+        if ($carro)
+        {
+            $hotel = $request->getSession()->get('hotel');
+            $username = $this->getUser();;
+            $sql = "select id from cliente where username = '".$username."'";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $id_cliente= $stmt->fetch();
+            $id_cliente = $id_cliente['id'];
+            $sql = 'select max(id_reservacion)+1 as id_reservacion from reservacion';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $id_reservacion = $stmt->fetch();
+            $id_reservacion = $id_reservacion['id_reservacion'];
+            foreach ($carro as $cro)
+            {
+                $vuelito = $this->getDoctrine()->getRepository('Proyecto2Bundle:Vuelo')->findOneBy(array('idVuelo'=>$cro))->getPrecio();
+                if ($hotel)
+                {
+                    $sql = "insert into reservacion(id_reservacion,id_cliente, id_vuelo, id_hotel,total) VALUES (".$id_reservacion.",".$id_cliente.",".$cro.",".$hotel.",".$vuelito.");";
+                }
+            else
+                {
+                    $sql = "insert into reservacion(id_reservacion,id_cliente, id_vuelo,total) VALUES (".$id_reservacion.",".$id_cliente.",".$cro.",".$vuelito.");";
+                }
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+            }
+            $request->getSession()->remove('carro');
+            return $this->redirect("/");
+        }
+    else
+        {
+            return $this->redirect("/");
+        }
+
     }
 
     public function pagaAction(Request $request)
@@ -23,9 +73,11 @@ class DefaultController extends Controller
         $carro = $request->getSession()->get('carro');
         $carro = array_unique($carro);
         $total = 0;
+        $vuelos = array();
         foreach ($carro as $id)
         {
-            $total =  $this->getDoctrine()->getRepository('Proyecto2Bundle:Vuelo')->find($id)->getPrecio();
+            $temp = $this->getDoctrine()->getRepository('Proyecto2Bundle:Vuelo')->find($id);
+            $total = $total + $temp->getPrecio();
         }
         return $this->render('Proyecto2Bundle:Default:cobro.html.twig',array('total'=>$total));
     }

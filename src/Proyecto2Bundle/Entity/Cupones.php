@@ -80,4 +80,33 @@ class Cupones
     {
         return $this->idCupon;
     }
+    /**
+     * @var integer
+     */
+    private $porcentaje;
+
+
+    /**
+     * Set porcentaje
+     *
+     * @param integer $porcentaje
+     *
+     * @return Cupones
+     */
+    public function setPorcentaje($porcentaje)
+    {
+        $this->porcentaje = $porcentaje;
+
+        return $this;
+    }
+
+    /**
+     * Get porcentaje
+     *
+     * @return integer
+     */
+    public function getPorcentaje()
+    {
+        return $this->porcentaje;
+    }
 }

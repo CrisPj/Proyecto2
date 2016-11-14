@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cupone</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idcupon</th>
+                <td>{{ cupone.idCupon }}</td>
+            </tr>
+            <tr>
+                <th>Cupon</th>
+                <td>{{ cupone.cupon }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{% if cupone.estado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cupones_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
