@@ -4,12 +4,48 @@ namespace Proyecto2Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
         return $this->render('Proyecto2Bundle:Default:index.html.twig');
+    }
+
+    public function listoAction(Request $request)
+    {
+        $request->getSession()->remove('carro');
+    }
+
+    public function pagaAction(Request $request)
+    {
+        $carro = $request->getSession()->get('carro');
+        $carro = array_unique($carro);
+        $total = 0;
+        foreach ($carro as $id)
+        {
+            $total =  $this->getDoctrine()->getRepository('Proyecto2Bundle:Vuelo')->find($id)->getPrecio();
+        }
+        return $this->render('Proyecto2Bundle:Default:cobro.html.twig',array('total'=>$total));
+    }
+
+    public function reserAction(Request $request)
+    {
+        $id = $request->request->get('id');
+        $session = $request->getSession();
+        if ($session && $id)
+        {
+            $carritos = $session->get('carro');
+            if (!$carritos)
+            {
+                $carritos= array();
+            }
+            array_push($carritos,intval($id));
+            $session->set('carro',$carritos);
+            return new Response('Bien');
+        }
+        return new Response('Mal');
     }
 
     public function hotelAction()

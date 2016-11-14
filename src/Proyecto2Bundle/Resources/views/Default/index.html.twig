@@ -1,22 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
         <div id="image">
-            <div class="text-vcenter">
-                <h1 class="text-white">Vuelos Python Team &copy</h1>
+            <div class="text-vcenter text-white">
+                <h1 class=>Vuelos Python Team &copy</h1>
                 <h3>Reservaciones</h3>
                 {% if app.user %}
-                    <a id="busquedabtn" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelos</a>
-                    <a id="busquedabtn2" href="#busqueda" class="btn btn-default btn-lg">Reservar vuelo+hotel</a>
+                    <a id="busquedabtn" href="#busqueda" class="btn btn-inverse btn-lg">Reservar vuelos</a>
+                    <a id="busquedabtn2" href="#busqueda" class="btn btn-inverse btn-lg">Reservar vuelo+hotel</a>
                 {% else %}
-                    <p>Para realizar una reservación es necesario iniciar sesións</p>
-                    <a href="/login" class="btn btn-info btn-lg">Registrarse</a>
+                    <p>Para realizar una reservación es necesario iniciar sesión</p>
+                    <a href="/register" class="btn btn-inverse btn-lg">Registrarse</a>
+                    <a href="/login" class="btn btn-inverse btn-lg">Iniciar sesión</a>
                 {% endif %}
             </div>
         </div>
 
         <div class="container">
             <div  class="card-panel" id="busqueda"></div>
-            <div id="form-messages" class="panel panel-info"></div>
+            <div id="form-messages" class="panel panel-success"></div>
+            <div class="panel panel-warning"></div>
         </div>
 
 {% endblock %}
@@ -28,118 +30,138 @@
     </style>
     {% endblock %}
 {% block javascript %}
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
-    <script>
+    {% if app.user %}
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
+        <script>
 
-        var formMessages = $('#form-messages');
-        function getval(sel) {
-            $.ajax
-            ({
-                url: Routing.generate('hotel_index'),
-                content: "JSON",
-                type: 'POST',
-                data: {id: sel.value},
-                success: function (json)
-                {
-                    $('#hotel').html("");
-                    $.each(json, function (i, value)
-                    {
-                        $('#hotel').append($('<option>').text(value.hotel).attr('value', value.id_hotel));
-                    });
-                    $("select").select2({dropdownCssClass: 'dropdown-inverse'});
-                }
-            });
-        }
-        $(document).ready(function ()
-        {
-            $('#busquedabtn2').click(function () {
-                spa('vuelo_hotel');
-                });
-            $('#busquedabtn').click(function () {
-                spa('vuelo');
-                var formulario = $('#formulario');
-            });
-
-
-            $('#vuel').click(function () {
-               tab('vuelo_index')
-            });
-            $('#clien').click(function () {
-                tab('cliente_index')
-            });
-
-            $('#busqueda').on ('submit', '#formulario',function (event) {
-                event.preventDefault();
-                var formData = $(formulario).serialize();
+            var formMessages = $('#form-messages');
+            
+            function cosa(sel,id) {
                 $.ajax({
+                    url: Routing.generate('reservar'),
+                    content: 'JSON',
                     type: 'POST',
-                    url: $(formulario).attr('action'),
-                    data: formData
+                    data: {id: sel},
+                    success: function (data) {
+                        $(id).removeClass('btn-info');
+                        $(id).addClass('btn-disabled');
+                        $(id).prop('disabled', true);
+                        $(id).text("Reservado")
+                    },
+                    error: function (data) {
+                        alert("error")
+                    }
                 })
-                        .done(function(response) {
-                            $(formMessages).removeClass('error');
-                            $(formMessages).html(response);
-                            $('#tabla').DataTable();
-                            if ($("#tabla").is(':visible')) {
-                                $("html, body").animate({scrollTop: $("#tabla").offset().top});
-                            }
-                        })
-                        .fail(function(data) {
-                            // Make sure that the formMessages div has the 'error' class.
-                            $(formMessages).removeClass('success');
-                            $(formMessages).addClass('error');
-
-                            // Set the message text.
-                            if (data.responseText !== '') {
-                                $(formMessages).text(data.responseText);
-                            } else {
-                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
-                            }
-                        })
-            });
-            });
-
-        function tab(ruta)
-        {
-            $.ajax
-            ({
-                type: 'POST',
-                url: Routing.generate(ruta)
-            })
-                    .done(function (response) {
-                        $(formMessages).removeClass('error');
-                        $(formMessages).html(response);
-                        $('#name').val('');
-                        $('#email').val('');
-                        $('#message').val('');
-                        $('#tabla').dataTable();
-                    })
-                    .fail(function (data) {
-                        $(formMessages).removeClass('success');
-                        $(formMessages).addClass('error');
-
-                        if (data.responseText !== '') {
-                            $(formMessages).text(data.responseText);
-                        }
-                        else {
-                            $(formMessages).text('Oops! An error occured and your message could not be sent.');
-                        }
-                    });
-            if ($("#busqueda").is(':visible'))
-            {
-                $("html, body").animate({scrollTop: $("#busqueda").offset().top});
-            }else
-            {
-                $("#busqueda").slideToggle(function ()
-                {
-                    if ($("#busqueda").is(':visible'))
+            }
+            function getval(sel) {
+                $.ajax
+                ({
+                    url: Routing.generate('hotel_index'),
+                    content: "JSON",
+                    type: 'POST',
+                    data: {id: sel.value},
+                    success: function (json)
                     {
-                        $("html, body").animate({scrollTop: $("#busqueda").offset().top});
+                        $('#hotel').html("");
+                        $.each(json, function (i, value)
+                        {
+                            $('#hotel').append($('<option>').text(value.hotel).attr('value', value.id_hotel));
+                        });
+                        $("select").select2({dropdownCssClass: 'dropdown-inverse'});
                     }
                 });
             }
+            $(document).ready(function ()
+            {
+                $('#busquedabtn2').click(function () {
+                    spa('vuelo_hotel');
+                });
+                $('#busquedabtn').click(function () {
+                    spa('vuelo');
+                    var formulario = $('#formulario');
+                });
 
-        }
+
+                $('#vuel').click(function () {
+                    tab('vuelo_index')
+                });
+                $('#clien').click(function () {
+                    tab('cliente_index')
+                });
+                
+
+                $('#busqueda').on ('submit', '#formulario',function (event) {
+                    event.preventDefault();
+                    var formData = $(formulario).serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: $(formulario).attr('action'),
+                        data: formData
+                    })
+                            .done(function(response) {
+                                $(formMessages).removeClass('error');
+                                $(formMessages).html(response);
+                                $('#tabla').DataTable();
+                                if ($("#tabla").is(':visible')) {
+                                    $("html, body").animate({scrollTop: $("#tabla").offset().top});
+                                }
+                            })
+                            .fail(function(data) {
+                                // Make sure that the formMessages div has the 'error' class.
+                                $(formMessages).removeClass('success');
+                                $(formMessages).addClass('error');
+
+                                // Set the message text.
+                                if (data.responseText !== '') {
+                                    $(formMessages).text(data.responseText);
+                                } else {
+                                    $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                                }
+                            })
+                });
+            });
+
+            function tab(ruta)
+            {
+                $.ajax
+                ({
+                    type: 'POST',
+                    url: Routing.generate(ruta)
+                })
+                        .done(function (response) {
+                            $(formMessages).removeClass('error');
+                            $(formMessages).html(response);
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#message').val('');
+                            $('#tabla').dataTable();
+                        })
+                        .fail(function (data) {
+                            $(formMessages).removeClass('success');
+                            $(formMessages).addClass('error');
+
+                            if (data.responseText !== '') {
+                                $(formMessages).text(data.responseText);
+                            }
+                            else {
+                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                            }
+                        });
+                if ($("#busqueda").is(':visible'))
+                {
+                    $("html, body").animate({scrollTop: $("#busqueda").offset().top});
+                }else
+                {
+                    $("#busqueda").slideToggle(function ()
+                    {
+                        if ($("#busqueda").is(':visible'))
+                        {
+                            $("html, body").animate({scrollTop: $("#busqueda").offset().top});
+                        }
+                    });
+                }
+
+            }
             function spa(ruta)
             {
                 $.ajax
@@ -147,28 +169,28 @@
                     type: 'POST',
                     url: Routing.generate(ruta)
                 })
-                .done(function (response)
-                {
+                        .done(function (response)
+                        {
                             $(formMessages).removeClass('error');
                             $('#busqueda').html(response);
                             $('#name').val('');
                             $('#email').val('');
                             $('#message').val('');
-                })
-                .fail(function (data)
-                {
-                    $(formMessages).removeClass('success');
-                    $(formMessages).addClass('error');
+                        })
+                        .fail(function (data)
+                        {
+                            $(formMessages).removeClass('success');
+                            $(formMessages).addClass('error');
 
-                    if (data.responseText !== '')
-                    {
-                        $(formMessages).text(data.responseText);
-                    }
-                    else
-                    {
-                        $(formMessages).text('Oops! An error occured and your message could not be sent.');
-                    }
-                });
+                            if (data.responseText !== '')
+                            {
+                                $(formMessages).text(data.responseText);
+                            }
+                            else
+                            {
+                                $(formMessages).text('Oops! An error occured and your message could not be sent.');
+                            }
+                        });
                 if ($("#busqueda").is(':visible'))
                 {
 
@@ -211,5 +233,6 @@
                     }
                 });
             }
-    </script>
+        </script>
+    {% endif %}
 {% endblock %}

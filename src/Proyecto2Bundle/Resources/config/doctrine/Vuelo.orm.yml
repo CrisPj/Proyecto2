@@ -33,11 +33,6 @@ Proyecto2Bundle\Entity\Vuelo:
         hora:
             type: datetime
             nullable: true
-        costo:
-            type: integer
-            nullable: true
-            options:
-                unsigned: false
     manyToOne:
         origen:
             targetEntity: Ciudad

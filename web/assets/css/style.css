@@ -45,3 +45,17 @@ body {
 }
  #cora {  color: red;  }
 .brand-logo{margin-left: 1%;}
+
+.footer-distributed {
+ background-color: #2f4154;
+ box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+ box-sizing: border-box;
+ width: 100%;
+ text-align: left;
+ font: normal 16px sans-serif;
+ padding: 45px 50px;
+}
+.footer-distributed .footer-right {
+ float: right;
+ max-width: 180px;
+}

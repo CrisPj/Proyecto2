@@ -29,7 +29,9 @@ vuelo_hotel:
   options:
               expose: true
 
-
+pagar:
+  path: /pagar
+  defaults: { _controller: Proyecto2Bundle:Default:paga }
 vuelo:
   path: /volar
   defaults: { _controller: Proyecto2Bundle:Default:vuelo }
@@ -39,4 +41,15 @@ vuelo:
 busqueda_vuelo:
   path: /busqueda
   defaults: { _controller: Proyecto2Bundle:Default:busquedaVuelo }
+
+listo:
+  path: /listo
+  defaults: { _controller: Proyecto2Bundle:Default:listo }
+
+reservar:
+  path: /reser
+  defaults: { _controller: Proyecto2Bundle:Default:reser }
+  methods:  [GET,POST]
+  options:
+              expose: true
 
